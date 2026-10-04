@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Francisco NASA Videos module.
+ *
+ * Provides the nasa_videos paragraph type which renders a searchable NASA
+ * Video Library via the Next.js frontend. Videos are fetched from the
+ * NASA Images and Video Library API with no API key required.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function francisco_nasa_videos_help(string $route_name, RouteMatchInterface $route_match): string {
+  if ($route_name === 'help.page.francisco_nasa_videos') {
+    return '<p>' . t(
+      'Provides the <strong>NASA Video Library</strong> paragraph type. Add it to any page via the paragraph field to embed a searchable feed of NASA science videos with topic filters, inline HTML5 playback, and load-more pagination. No API key required.'
+    ) . '</p>';
+  }
+  return '';
+}
+
+/**
+ * Implements hook_theme().
+ */
+function francisco_nasa_videos_theme(): array {
+  return [
+    'paragraph__nasa_videos' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
